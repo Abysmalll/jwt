@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community</title>
+    <link href="/static/style.css" rel="stylesheet">
+</head>
+<body class="community-page">
+    <header>
+        <h1>Community</h1>
+        <nav>
+            <a href="/">Logout</a>
+        </nav>
+    </header>
+    <main>
+        <div class="comments-container">
+            <h3>Announcements</h3>
+            <div class="comments">
+            <!-- N0t_th3_5eCReT_K3y -->
+                {% for comment in comments %}
+                    <div class="comment">
+                        {% if comment.author %}
+                            <h4>{{ comment.author }}</h4>
+                        {% endif %}
+                        <p>{{ comment.content }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+</body>
+</html>
