@@ -3,15 +3,12 @@ import jwt
 
 app = Flask(__name__)
 
-SECRET_KEY = "N0t_th3_5eCReT_K3y"  # Keep your secret key secure
+SECRET_KEY = "N0t_th3_5eCReT_K3y"
 
-# Load the flag from a file
 def get_flag():
-    try:
-        with open('./flag.txt', 'r') as f:
-            return f.read().strip()
-    except FileNotFoundError:
-        return "flag{placeholder_flag}"
+    with open('./flag.txt', 'r') as f:
+        return f.read()
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -43,10 +40,8 @@ def community():
             {"author": "admin", "content": "There will be a meetup soon!"}
         ]
         
-        # Add the flag as a comment if the user is an admin
         if role == "admin":
-            # Add the flag as a comment without the admin's name
-            comments.append({"author": "admin", "content": get_flag()})  # Empty author for the flag
+            comments.append({"author": "admin", "content": get_flag()})
 
         return render_template('community.html', role=role, comments=comments)
     except jwt.DecodeError:
